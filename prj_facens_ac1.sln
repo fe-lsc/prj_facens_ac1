@@ -1,18 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewAssembly", "NewAssembly.csproj", "{BFDB7EAC-690B-89CB-DEBF-35FF760A4A6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewAssembly", "NewAssembly.csproj", "{ac7edbbf-0b69-cb89-debf-35ff760a4a6e}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{9f12896d-afd4-68d2-3528-e5dfacf7fae0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanTween", "LeanTween.csproj", "{9385e3d1-97b1-5a78-4857-83ef1d4cfa92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{6c53b72c-d583-bd27-f0c3-de5873c9bf15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BFDB7EAC-690B-89CB-DEBF-35FF760A4A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFDB7EAC-690B-89CB-DEBF-35FF760A4A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFDB7EAC-690B-89CB-DEBF-35FF760A4A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFDB7EAC-690B-89CB-DEBF-35FF760A4A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ac7edbbf-0b69-cb89-debf-35ff760a4a6e}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ac7edbbf-0b69-cb89-debf-35ff760a4a6e}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9f12896d-afd4-68d2-3528-e5dfacf7fae0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9f12896d-afd4-68d2-3528-e5dfacf7fae0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9385e3d1-97b1-5a78-4857-83ef1d4cfa92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9385e3d1-97b1-5a78-4857-83ef1d4cfa92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6c53b72c-d583-bd27-f0c3-de5873c9bf15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6c53b72c-d583-bd27-f0c3-de5873c9bf15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

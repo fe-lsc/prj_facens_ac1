@@ -7,17 +7,39 @@ public class GameManager : MonoBehaviour
 
 {
     public GameObject hazardPrefab;
+    public GameObject player;
     public TMPro.TextMeshProUGUI scoreText;
     public Image backgroundMenu;
 
     private int             score;
     private float           timer;
-    private static bool     gameOver;
+    private bool            gameOver;
+    private Coroutine hazardsCoroutine;
+
+    public GameObject mainVCam;
+    public GameObject zoomVCam;
+    public GameObject gameOverMenu;
+
+    private static GameManager instance;
+    public static GameManager Instance => instance;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnHazards());   
+        instance = this; 
+    }
+
+    private void OnEnable(){
+        player.SetActive(true);
+
+        mainVCam.SetActive(true);
+        zoomVCam.SetActive(false);
+
+        gameOver = false;
+        score = 0;
+        timer = 0;
+        scoreText.text = "0";
+        hazardsCoroutine = StartCoroutine(SpawnHazards());  
     }
 
     private void Update()
@@ -89,8 +111,18 @@ public class GameManager : MonoBehaviour
         yield return SpawnHazards();
     }
 
-    public static void GameOver()
+    public void GameOver()
     {
+        StopCoroutine(hazardsCoroutine);
         gameOver = true;
+        mainVCam.SetActive(false);
+        zoomVCam.SetActive(true);
+
+        gameObject.SetActive(false);
+        gameOverMenu.SetActive(true);
+    }
+    public void Enable()
+    {
+        gameObject.SetActive(true);
     }
 }
