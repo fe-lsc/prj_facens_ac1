@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AutoDestroyer : MonoBehaviour
 {
-    public float delay;
+    [SerializeField]
+    private float delay;
 
     // Start is called before the first frame update
     void Start()

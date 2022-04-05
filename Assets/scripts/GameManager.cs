@@ -6,19 +6,28 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 
 {
-    public GameObject hazardPrefab;
-    public GameObject player;
-    public TMPro.TextMeshProUGUI scoreText;
-    public Image backgroundMenu;
+    [SerializeField]
+    private GameObject hazardPrefab;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI scoreText;
+    [SerializeField]
+    private Image backgroundMenu;
+    
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private GameObject mainVCam;
+    [SerializeField]
+    private GameObject zoomVCam;
+    [SerializeField]
+    private GameObject gameOverMenu;
 
     private int             score;
     private float           timer;
     private bool            gameOver;
     private Coroutine hazardsCoroutine;
 
-    public GameObject mainVCam;
-    public GameObject zoomVCam;
-    public GameObject gameOverMenu;
+   
 
     private static GameManager instance;
     public static GameManager Instance => instance;
@@ -48,13 +57,11 @@ public class GameManager : MonoBehaviour
         {
             if(Time.timeScale == 0)
             {
-                StartCoroutine(ScaleTime(0, 1, 0.75f));
-                backgroundMenu.gameObject.SetActive(false);
+                UnPause();
             }
             if(Time.timeScale == 1)
             {
-                StartCoroutine(ScaleTime(1, 0, 0.75f));
-                backgroundMenu.gameObject.SetActive(true);
+                Pause();
             }
         }
 
@@ -72,22 +79,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator ScaleTime(float start, float end, float duration)
+    private void Pause(){
+        LeanTween.value(1, 0, 0.75f)
+                    .setOnUpdate(SetTimeScale)
+                    .setIgnoreTimeScale(true);
+                backgroundMenu.gameObject.SetActive(true);
+    }
+
+    private void UnPause(){
+        LeanTween.value(0, 1, 0.75f)
+                    .setOnUpdate(SetTimeScale)
+                    .setIgnoreTimeScale(true);
+                backgroundMenu.gameObject.SetActive(false);
+    }
+
+    private void SetTimeScale(float value)
     {
-        float lastTime = Time.realtimeSinceStartup;
-        float timer = 0.0f;
-
-        while(timer < duration)
-        {
-            Time.timeScale = Mathf.Lerp(start, end, timer / duration);
-            Time.fixedDeltaTime = 0.02f * Time.timeScale;
-            timer += (Time.realtimeSinceStartup - lastTime);
-            lastTime = Time.realtimeSinceStartup;
-            yield return null;
-        }
-
-        Time.timeScale = end;
-        Time.fixedDeltaTime = 0.02f * end;
+        Time.timeScale = value;
+        Time.fixedDeltaTime = 0.02f * value;
     }
 
     private IEnumerator SpawnHazards()
@@ -115,6 +124,12 @@ public class GameManager : MonoBehaviour
     {
         StopCoroutine(hazardsCoroutine);
         gameOver = true;
+
+        if (Time.timeScale < 1)
+        {
+            UnPause();
+        }
+
         mainVCam.SetActive(false);
         zoomVCam.SetActive(true);
 

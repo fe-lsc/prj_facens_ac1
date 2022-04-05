@@ -5,10 +5,11 @@ using Cinemachine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private float forceMultiplier = 3f;
+    [SerializeField]
+    private ParticleSystem deathParticles;
 
-    public float forceMultiplier = 3f;
-    public float maximumVelocity = 3f;
-    public ParticleSystem deathParticles;
     public GameObject mainVCam;
     public GameObject zoomVCam;
 

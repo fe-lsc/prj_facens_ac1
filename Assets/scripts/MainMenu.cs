@@ -6,7 +6,9 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     private RectTransform scoreRectTransform;
-    public GameManager gameManager;
+
+    [SerializeField]
+    private GameManager gameManager;
     void Start(){
         scoreRectTransform.anchoredPosition = new Vector2(
             scoreRectTransform.anchoredPosition.x,
