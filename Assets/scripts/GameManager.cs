@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gameOverMenu;
 
+    private int             highScore;
     private int             score;
     private float           timer;
     private bool            gameOver;
@@ -30,12 +31,16 @@ public class GameManager : MonoBehaviour
    
 
     private static GameManager instance;
+    private const string HighScorePreferenceKey = "HighScore";
     public static GameManager Instance => instance;
+
+    public int HighScore => highScore;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this; 
+        highScore = PlayerPrefs.GetInt(HighScorePreferenceKey);
     }
 
     private void OnEnable(){
@@ -128,6 +133,12 @@ public class GameManager : MonoBehaviour
         if (Time.timeScale < 1)
         {
             UnPause();
+        }
+
+        if (score > highScore){
+            highScore = score;
+            PlayerPrefs.SetInt(HighScorePreferenceKey, highScore);
+
         }
 
         mainVCam.SetActive(false);

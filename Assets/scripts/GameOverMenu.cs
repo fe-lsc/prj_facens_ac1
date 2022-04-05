@@ -6,7 +6,12 @@ using UnityEngine;
 public class GameOverMenu : MonoBehaviour
 {
    private LTDescr restartAnimation;
+   [SerializeField]
+   private TMPro.TextMeshProUGUI highScore;
+
    private void OnEnable(){
+
+      highScore.text = $"High Score: {GameManager.Instance.HighScore}";
       var rectTransform = GetComponent<RectTransform>();
       rectTransform.anchoredPosition = new Vector2(0, rectTransform.rect.height);
       rectTransform.LeanMoveY(0, 2f).setEaseOutElastic();
